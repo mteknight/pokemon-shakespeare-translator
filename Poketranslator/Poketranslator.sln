@@ -3,7 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29806.167
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Poketranslator.API", "Poketranslator.API\Poketranslator.API.csproj", "{7B82E01A-5133-4D55-841C-423767756331}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Poketranslator.API", "Poketranslator.API\Poketranslator.API.csproj", "{7B82E01A-5133-4D55-841C-423767756331}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Poketranslator.Domain", "Poketranslator.Domain\Poketranslator.Domain.csproj", "{6F98486A-290E-464A-93B1-4CDB08578B99}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Poketranslator.Data", "Poketranslator.Data\Poketranslator.Data.csproj", "{3AEE3E91-8A96-43A4-A283-64A07F85C22D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Poketranslator.Data.Interfaces", "Poketranslator.Data.Interfaces\Poketranslator.Data.Interfaces.csproj", "{92B29FE3-CCEB-4422-82A2-CDDA417B67DC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Poketranslator.Crosscutting", "Poketranslator.Crosscutting\Poketranslator.Crosscutting.csproj", "{8E282609-82A2-4AB8-9A96-EC8C353BAC25}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{DC6677AC-D240-40F7-8ED6-76AD75E8D4B9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +25,22 @@ Global
 		{7B82E01A-5133-4D55-841C-423767756331}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7B82E01A-5133-4D55-841C-423767756331}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7B82E01A-5133-4D55-841C-423767756331}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F98486A-290E-464A-93B1-4CDB08578B99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F98486A-290E-464A-93B1-4CDB08578B99}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F98486A-290E-464A-93B1-4CDB08578B99}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F98486A-290E-464A-93B1-4CDB08578B99}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3AEE3E91-8A96-43A4-A283-64A07F85C22D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3AEE3E91-8A96-43A4-A283-64A07F85C22D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3AEE3E91-8A96-43A4-A283-64A07F85C22D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3AEE3E91-8A96-43A4-A283-64A07F85C22D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{92B29FE3-CCEB-4422-82A2-CDDA417B67DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{92B29FE3-CCEB-4422-82A2-CDDA417B67DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{92B29FE3-CCEB-4422-82A2-CDDA417B67DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{92B29FE3-CCEB-4422-82A2-CDDA417B67DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8E282609-82A2-4AB8-9A96-EC8C353BAC25}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E282609-82A2-4AB8-9A96-EC8C353BAC25}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E282609-82A2-4AB8-9A96-EC8C353BAC25}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E282609-82A2-4AB8-9A96-EC8C353BAC25}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

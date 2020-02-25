@@ -9,5 +9,10 @@
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.9.10" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Poketranslator.Crosscutting\Poketranslator.Crosscutting.csproj" />
+    <ProjectReference Include="..\Poketranslator.Data.Interfaces\Poketranslator.Data.Interfaces.csproj" />
+  </ItemGroup>
+
 
 </Project>
