@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace Poketranslator.Data.Interfaces.External.PokemonApi
+namespace Poketranslator.Data.Interfaces.Services
 {
     public interface IPokemonApiService
     {

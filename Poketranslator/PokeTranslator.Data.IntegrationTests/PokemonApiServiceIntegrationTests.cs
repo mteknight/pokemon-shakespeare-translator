@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Poketranslator.Crosscutting.DependencyInjection;
 using Poketranslator.Data.Interfaces.External.PokemonApi;
+using Poketranslator.Data.Interfaces.Services;
 using Xunit;
 
 namespace PokeTranslator.Data.IntegrationTests
