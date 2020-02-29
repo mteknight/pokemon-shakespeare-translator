@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Globalization;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Poketranslator.Domain;
 using PokeApiNet;
@@ -29,7 +30,35 @@ namespace Poketranslator.Data.External.PokemonApi
 
         public async Task<Domain.Pokemon> GetByName(string pokemonName)
         {
-            throw new NotImplementedException();
+            if (string.IsNullOrEmpty(pokemonName))
+            {
+                throw new ArgumentNullException("Value cannot be null or empty.", nameof(pokemonName));
+            }
+
+            using (var client = new PokeApiClient())
+            {
+                var pokemonSpecies = await client.GetResourceAsync<PokemonSpecies>(pokemonName).ConfigureAwait(false);
+                var description = pokemonSpecies.FlavorTextEntries
+                    .FirstOrDefault(texts => texts.Language.Name == "en");
+
+                var parsedDescription = Regex.Replace(description?.FlavorText ?? string.Empty, @"\t|\n|\r", " ");
+
+                return new Domain.Pokemon
+                {
+                    Name = pokemonSpecies.Name,
+                    OriginalDescription = parsedDescription
+                };
+            }
         }
+    }
+
+    public interface IPokeApiClientFactory
+    {
+        PokeApiClient Create();
+    }
+
+    public class PokeApiClientFactory : IPokeApiClientFactory
+    {
+        public PokeApiClient Create() => new PokeApiClient();
     }
 }

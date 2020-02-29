@@ -5,17 +5,19 @@ VisualStudioVersion = 16.0.29806.167
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Poketranslator.API", "Poketranslator.API\Poketranslator.API.csproj", "{7B82E01A-5133-4D55-841C-423767756331}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Poketranslator.Domain", "Poketranslator.Domain\Poketranslator.Domain.csproj", "{6F98486A-290E-464A-93B1-4CDB08578B99}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Poketranslator.Domain", "Poketranslator.Domain\Poketranslator.Domain.csproj", "{6F98486A-290E-464A-93B1-4CDB08578B99}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Poketranslator.Data", "Poketranslator.Data\Poketranslator.Data.csproj", "{3AEE3E91-8A96-43A4-A283-64A07F85C22D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Poketranslator.Data", "Poketranslator.Data\Poketranslator.Data.csproj", "{3AEE3E91-8A96-43A4-A283-64A07F85C22D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Poketranslator.Data.Interfaces", "Poketranslator.Data.Interfaces\Poketranslator.Data.Interfaces.csproj", "{92B29FE3-CCEB-4422-82A2-CDDA417B67DC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Poketranslator.Data.Interfaces", "Poketranslator.Data.Interfaces\Poketranslator.Data.Interfaces.csproj", "{92B29FE3-CCEB-4422-82A2-CDDA417B67DC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Poketranslator.Crosscutting", "Poketranslator.Crosscutting\Poketranslator.Crosscutting.csproj", "{8E282609-82A2-4AB8-9A96-EC8C353BAC25}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Poketranslator.Crosscutting", "Poketranslator.Crosscutting\Poketranslator.Crosscutting.csproj", "{8E282609-82A2-4AB8-9A96-EC8C353BAC25}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{DC6677AC-D240-40F7-8ED6-76AD75E8D4B9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Poketranslator.Data.Tests", "Poketranslator.Data.Tests\Poketranslator.Data.Tests.csproj", "{E0AE619E-0715-435B-AE1E-EB407FBB3625}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Poketranslator.Data.Tests", "Poketranslator.Data.Tests\Poketranslator.Data.Tests.csproj", "{E0AE619E-0715-435B-AE1E-EB407FBB3625}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PokeTranslator.Data.IntegrationTests", "PokeTranslator.Data.IntegrationTests\PokeTranslator.Data.IntegrationTests.csproj", "{C4AF9588-DD2D-47E1-BD27-BA4222AB95BC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,12 +49,17 @@ Global
 		{E0AE619E-0715-435B-AE1E-EB407FBB3625}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E0AE619E-0715-435B-AE1E-EB407FBB3625}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E0AE619E-0715-435B-AE1E-EB407FBB3625}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C4AF9588-DD2D-47E1-BD27-BA4222AB95BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C4AF9588-DD2D-47E1-BD27-BA4222AB95BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C4AF9588-DD2D-47E1-BD27-BA4222AB95BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C4AF9588-DD2D-47E1-BD27-BA4222AB95BC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{E0AE619E-0715-435B-AE1E-EB407FBB3625} = {DC6677AC-D240-40F7-8ED6-76AD75E8D4B9}
+		{C4AF9588-DD2D-47E1-BD27-BA4222AB95BC} = {DC6677AC-D240-40F7-8ED6-76AD75E8D4B9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4F8095FD-EAA2-4155-B451-8577895A0971}
