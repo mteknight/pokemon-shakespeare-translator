@@ -3,6 +3,8 @@ using Poketranslator.Data.Interfaces.Services;
 using Poketranslator.Data.Interfaces.Wrappers;
 using Poketranslator.Data.Services;
 using Poketranslator.Data.Wrappers;
+using Poketranslator.Domain.Interfaces.Services;
+using Poketranslator.Domain.Services;
 
 namespace Poketranslator.Crosscutting.DependencyInjection
 {
@@ -16,6 +18,12 @@ namespace Poketranslator.Crosscutting.DependencyInjection
                 .AddSingleton<IShakespeareTranslationService, ShakespeareTranslationService>()
                 .AddSingleton<IPokeApiClientWrapper, PokeApiClientWrapper>()
                 .AddSingleton<IPokemonApiService, PokemonApiService>();
+        }
+
+        public static IServiceCollection ConfigureDomainDependencies(this IServiceCollection services)
+        {
+            return services
+                .AddSingleton<IPokemonTranslationService, PokemonTranslationService>();
         }
     }
 }

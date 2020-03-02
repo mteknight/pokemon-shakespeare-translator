@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using PokeApiNet;
 using Poketranslator.Data.Interfaces.Services;
 using Poketranslator.Data.Interfaces.Wrappers;
+using Poketranslator.Domain.Interfaces.Domain;
 using Pokemon = PokeApiNet.Pokemon;
 
 namespace Poketranslator.Data.Services
@@ -20,7 +21,7 @@ namespace Poketranslator.Data.Services
             _pokeApiClientWrapper = pokeApiClientWrapper ?? throw new ArgumentNullException(nameof(pokeApiClientWrapper));
         }
 
-        public async Task<Domain.Pokemon> GetByName(
+        public async Task<IPokemon> GetByName(
             string pokemonName,
             CancellationToken cancellationToken)
         {
@@ -37,7 +38,7 @@ namespace Poketranslator.Data.Services
                 : GetPokemonDetails(pokemonSpecies);
         }
 
-        private static Domain.Pokemon GetPokemonDetails(PokemonSpecies pokemonSpecies)
+        private static IPokemon GetPokemonDetails(PokemonSpecies pokemonSpecies)
         {
             var parsedDescription = GetDescription(pokemonSpecies);
             var pokemonName = pokemonSpecies.Name;
@@ -56,7 +57,7 @@ namespace Poketranslator.Data.Services
         private static string ParseLineBreaks(PokemonSpeciesFlavorTexts flavorTexts)
             => Regex.Replace(flavorTexts.FlavorText, @"\t|\n|\r", " ");
 
-        private static Domain.Pokemon CreatePokemon(string pokemonName, string parsedDescription)
+        private static IPokemon CreatePokemon(string pokemonName, string parsedDescription)
         {
             return new Domain.Pokemon
             {

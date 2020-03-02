@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Poketranslator.Data\Poketranslator.Data.csproj" />
+    <ProjectReference Include="..\Poketranslator.Domain\Poketranslator.Domain.csproj" />
   </ItemGroup>
 
 </Project>

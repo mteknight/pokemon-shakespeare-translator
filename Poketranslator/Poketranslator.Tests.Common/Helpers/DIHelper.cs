@@ -9,7 +9,8 @@ namespace Poketranslator.Tests.Common.Helpers
         public static IServiceCollection GetServices()
         {
             return new ServiceCollection()
-                .ConfigureDataDependencies();
+                .ConfigureDataDependencies()
+                .ConfigureDomainDependencies();
         }
 
         public static TService GetConfiguredService<TService>(this IServiceCollection services)

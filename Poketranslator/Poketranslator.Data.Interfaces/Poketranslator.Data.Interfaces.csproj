@@ -9,7 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Poketranslator.Domain\Poketranslator.Domain.csproj" />
+    <ProjectReference Include="..\Poketranslator.Domain.Interfaces\Poketranslator.Domain.Interfaces.csproj" />
   </ItemGroup>
 
 </Project>

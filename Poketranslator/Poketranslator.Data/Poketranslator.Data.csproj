@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Poketranslator.Data.Interfaces\Poketranslator.Data.Interfaces.csproj" />
+    <ProjectReference Include="..\Poketranslator.Domain\Poketranslator.Domain.csproj" />
   </ItemGroup>
 
 </Project>
