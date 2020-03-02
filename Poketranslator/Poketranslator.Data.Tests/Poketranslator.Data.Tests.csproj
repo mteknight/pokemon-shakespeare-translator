@@ -22,6 +22,7 @@
     <ProjectReference Include="..\Poketranslator.Crosscutting\Poketranslator.Crosscutting.csproj" />
     <ProjectReference Include="..\Poketranslator.Data.Interfaces\Poketranslator.Data.Interfaces.csproj" />
     <ProjectReference Include="..\Poketranslator.Domain\Poketranslator.Domain.csproj" />
+    <ProjectReference Include="..\Poketranslator.Tests.Common\Poketranslator.Tests.Common.csproj" />
   </ItemGroup>
 
 </Project>

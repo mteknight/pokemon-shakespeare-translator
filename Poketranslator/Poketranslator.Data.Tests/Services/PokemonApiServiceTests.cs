@@ -1,14 +1,11 @@
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-using AutoFixture;
-using Microsoft.Extensions.DependencyInjection;
 using Moq;
 using PokeApiNet;
-using Poketranslator.Crosscutting.DependencyInjection;
 using Poketranslator.Data.Interfaces.Services;
 using Poketranslator.Data.Interfaces.Wrappers;
-using Poketranslator.Data.Tests.Helpers;
+using Poketranslator.Tests.Common.Helpers;
 using Xunit;
 
 namespace Poketranslator.Data.Tests.Services

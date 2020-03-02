@@ -3,16 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Moq;
 using Newtonsoft.Json;
 using Poketranslator.Data.Interfaces.Services;
 using Poketranslator.Data.Interfaces.Wrappers;
-using Poketranslator.Data.Services;
 using Poketranslator.Data.Services.Models;
-using Poketranslator.Data.Tests.Helpers;
+using Poketranslator.Tests.Common.Helpers;
 using Xunit;
 
 namespace Poketranslator.Data.Tests.Services

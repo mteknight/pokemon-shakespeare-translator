@@ -2,7 +2,7 @@ using AutoFixture;
 using AutoFixture.AutoMoq;
 using AutoFixture.Xunit2;
 
-namespace Poketranslator.Data.Tests.Helpers
+namespace Poketranslator.Tests.Common.Helpers
 {
     public class AutoMoqDataAttribute : AutoDataAttribute
     {

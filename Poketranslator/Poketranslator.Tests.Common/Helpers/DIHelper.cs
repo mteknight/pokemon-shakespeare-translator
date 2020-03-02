@@ -1,9 +1,8 @@
-﻿using System.Collections.Generic;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using Moq;
 using Poketranslator.Crosscutting.DependencyInjection;
 
-namespace Poketranslator.Data.Tests.Helpers
+namespace Poketranslator.Tests.Common.Helpers
 {
     public static class DIHelper
     {
@@ -20,7 +19,9 @@ namespace Poketranslator.Data.Tests.Helpers
                 .GetService<TService>();
         }
 
-        public static IServiceCollection RegisterMock<TMockObject>(this IServiceCollection services, Mock<TMockObject> mockToRegister)
+        public static IServiceCollection RegisterMock<TMockObject>(
+            this IServiceCollection services,
+            Mock<TMockObject> mockToRegister)
             where TMockObject : class
         {
             return services.AddSingleton(_ => mockToRegister.Object);
