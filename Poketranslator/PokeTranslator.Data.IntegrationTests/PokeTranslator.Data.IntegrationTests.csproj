@@ -15,10 +15,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="PokemonApi\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\Poketranslator.Crosscutting\Poketranslator.Crosscutting.csproj" />
     <ProjectReference Include="..\Poketranslator.Data.Interfaces\Poketranslator.Data.Interfaces.csproj" />
     <ProjectReference Include="..\Poketranslator.Data\Poketranslator.Data.csproj" />

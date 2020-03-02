@@ -11,6 +11,9 @@ namespace Poketranslator.Crosscutting.DependencyInjection
         public static IServiceCollection ConfigureDataDependencies(this IServiceCollection services)
         {
             return services
+                .AddHttpClient()
+                .AddSingleton<IHttpClientWrapper, HttpClientWrapper>()
+                .AddSingleton<IShakespeareTranslationService, ShakespeareTranslationService>()
                 .AddSingleton<IPokeApiClientWrapper, PokeApiClientWrapper>()
                 .AddSingleton<IPokemonApiService, PokemonApiService>();
         }
