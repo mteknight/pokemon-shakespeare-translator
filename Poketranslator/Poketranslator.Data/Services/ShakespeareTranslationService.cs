@@ -6,6 +6,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Poketranslator.Data.Interfaces.Services;
+using Poketranslator.Data.Interfaces.Wrappers;
+using Poketranslator.Data.Services.Models;
 
 namespace Poketranslator.Data.Services
 {
@@ -59,47 +61,6 @@ namespace Poketranslator.Data.Services
         private static string ParseDuplicatedWhitespaces(ShakespeareTranslationResponse translationResponse)
         {
             return Regex.Replace(translationResponse.Contents.Translated, @"[ ]{2,}", " ");
-        }
-    }
-
-    public class ShakespeareTranslationResponse
-    {
-        public TranslationContents Contents { get; set; }
-    }
-
-    public class TranslationContents
-    {
-        public string Translated { get; set; }
-    }
-
-    public interface IHttpClientWrapper
-    {
-        Task<HttpResponseMessage> PostAsync(
-            string requestUri,
-            HttpContent content,
-            CancellationToken cancellationToken);
-    }
-
-    public class HttpClientWrapper : IHttpClientWrapper
-    {
-        private readonly IHttpClientFactory _httpClientFactory;
-
-        public HttpClientWrapper(
-            IHttpClientFactory httpClientFactory)
-        {
-            _httpClientFactory = httpClientFactory ?? throw new ArgumentNullException(nameof(httpClientFactory));
-        }
-
-        public virtual async Task<HttpResponseMessage> PostAsync(
-            string requestUri,
-            HttpContent content,
-            CancellationToken cancellationToken)
-        {
-            using var client = _httpClientFactory.CreateClient();
-            var response = await client.PostAsync(requestUri, content, cancellationToken).ConfigureAwait(false);
-            response.EnsureSuccessStatusCode();
-
-            return response;
         }
     }
 }

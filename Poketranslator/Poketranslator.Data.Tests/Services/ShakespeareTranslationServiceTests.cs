@@ -9,7 +9,9 @@ using System.Threading.Tasks;
 using Moq;
 using Newtonsoft.Json;
 using Poketranslator.Data.Interfaces.Services;
+using Poketranslator.Data.Interfaces.Wrappers;
 using Poketranslator.Data.Services;
+using Poketranslator.Data.Services.Models;
 using Poketranslator.Data.Tests.Helpers;
 using Xunit;
 
