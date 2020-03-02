@@ -1,4 +1,5 @@
 using System;
+using System.Threading;
 using System.Threading.Tasks;
 using AutoFixture;
 using Microsoft.Extensions.DependencyInjection;
@@ -24,7 +25,7 @@ namespace Poketranslator.Data.Tests.Services
                 .GetConfiguredService<IPokemonApiService>();
 
             // Act
-            Func<Task> SutCall() => () => sutService.GetByName(pokemonName);
+            Func<Task> SutCall() => () => sutService.GetByName(pokemonName, CancellationToken.None);
 
             // Assert
             return Assert.ThrowsAsync<ArgumentNullException>(SutCall());
@@ -43,7 +44,8 @@ namespace Poketranslator.Data.Tests.Services
                 .GetConfiguredService<IPokemonApiService>();
 
             // Act
-            var pokemon = await sutService.GetByName(pokemonName).ConfigureAwait(false);
+            var pokemon = await sutService.GetByName(pokemonName, CancellationToken.None)
+                .ConfigureAwait(false);
 
             // Assert
             Assert.Null(pokemon);
@@ -54,7 +56,7 @@ namespace Poketranslator.Data.Tests.Services
             PokemonSpecies pokemonSpecies = default)
         {
             pokeApiClientWrapperMock
-                .Setup(wrapper => wrapper.GetResourceAsync<PokemonSpecies>(It.IsAny<string>()))
+                .Setup(wrapper => wrapper.GetResourceAsync<PokemonSpecies>(It.IsAny<string>(), It.IsAny<CancellationToken>()))
                 .ReturnsAsync(() => pokemonSpecies);
         }
 
@@ -72,7 +74,8 @@ namespace Poketranslator.Data.Tests.Services
                 .GetConfiguredService<IPokemonApiService>();
 
             // Act
-            var pokemon = await sutService.GetByName(pokemonName).ConfigureAwait(false);
+            var pokemon = await sutService.GetByName(pokemonName, CancellationToken.None)
+                .ConfigureAwait(false);
 
             // Assert
             Assert.NotNull(pokemon);
@@ -97,12 +100,35 @@ namespace Poketranslator.Data.Tests.Services
                 .GetConfiguredService<IPokemonApiService>();
 
             // Act
-            var pokemon = await sutService.GetByName(pokemonName).ConfigureAwait(false);
+            var pokemon = await sutService.GetByName(pokemonName, CancellationToken.None)
+                .ConfigureAwait(false);
 
             // Assert
             Assert.NotNull(pokemon);
             Assert.Equal(pokemonName, pokemon.Name);
             Assert.Equal(expectedDescription, pokemon.OriginalDescription);
+        }
+
+        [Theory]
+        [AutoMoqData]
+        public async Task TestGetByName_WhenRequestIsMade_ExpectApiClientWrapperCall(
+            Mock<IPokeApiClientWrapper> pokeApiClientWrapperMock,
+            string pokemonName,
+            string originalDescription)
+        {
+            // Arrange
+            var pokemonSpecies = PokemonSpeciesHelper.CreatePokemonSpecies(pokemonName, originalDescription, "en");
+            SetupPokeApiClientWrapperMock(pokeApiClientWrapperMock, pokemonSpecies);
+            var sutService = DIHelper.GetServices()
+                .RegisterMock(pokeApiClientWrapperMock)
+                .GetConfiguredService<IPokemonApiService>();
+
+            // Act
+            await sutService.GetByName(pokemonName, CancellationToken.None);
+
+            // Assert
+            pokeApiClientWrapperMock
+                .Verify(wrapper => wrapper.GetResourceAsync<PokemonSpecies>(It.IsAny<string>(), It.IsAny<CancellationToken>()));
         }
     }
 }

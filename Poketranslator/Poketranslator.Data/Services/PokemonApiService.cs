@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
 using PokeApiNet;
 using Poketranslator.Data.Interfaces.External.PokemonApi;
@@ -19,14 +20,17 @@ namespace Poketranslator.Data.Services
             _pokeApiClientWrapper = pokeApiClientWrapper ?? throw new ArgumentNullException(nameof(pokeApiClientWrapper));
         }
 
-        public async Task<Domain.Pokemon> GetByName(string pokemonName)
+        public async Task<Domain.Pokemon> GetByName(
+            string pokemonName,
+            CancellationToken cancellationToken)
         {
             if (string.IsNullOrEmpty(pokemonName))
             {
                 throw new ArgumentNullException("Value cannot be null or empty.", nameof(pokemonName));
             }
 
-            var pokemonSpecies = await _pokeApiClientWrapper.GetResourceAsync<PokemonSpecies>(pokemonName).ConfigureAwait(false);
+            var pokemonSpecies = await _pokeApiClientWrapper.GetResourceAsync<PokemonSpecies>(pokemonName, cancellationToken)
+                .ConfigureAwait(false);
 
             return pokemonSpecies is null
                 ? default
