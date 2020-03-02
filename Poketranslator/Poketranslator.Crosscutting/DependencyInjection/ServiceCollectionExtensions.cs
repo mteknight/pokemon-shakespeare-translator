@@ -1,6 +1,4 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using Poketranslator.Data.External.PokemonApi;
-using Poketranslator.Data.Interfaces.External.PokemonApi;
 using Poketranslator.Data.Interfaces.Services;
 using Poketranslator.Data.Interfaces.Wrappers;
 using Poketranslator.Data.Services;

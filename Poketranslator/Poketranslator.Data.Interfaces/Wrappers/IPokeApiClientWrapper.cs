@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using PokeApiNet;
 
-namespace Poketranslator.Data.Interfaces.External.PokemonApi
+namespace Poketranslator.Data.Interfaces.Wrappers
 {
     public interface IPokeApiClientWrapper
     {

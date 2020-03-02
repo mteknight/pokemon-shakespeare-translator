@@ -6,8 +6,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Moq;
 using PokeApiNet;
 using Poketranslator.Crosscutting.DependencyInjection;
-using Poketranslator.Data.Interfaces.External.PokemonApi;
 using Poketranslator.Data.Interfaces.Services;
+using Poketranslator.Data.Interfaces.Wrappers;
 using Poketranslator.Data.Tests.Helpers;
 using Xunit;
 

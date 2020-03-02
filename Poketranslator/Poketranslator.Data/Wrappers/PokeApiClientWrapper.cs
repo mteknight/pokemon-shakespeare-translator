@@ -1,12 +1,10 @@
-﻿using System;
-using System.Net.Http;
+﻿using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using PokeApiNet;
-using Poketranslator.Data.Interfaces.External.PokemonApi;
-using Poketranslator.Data.Services;
+using Poketranslator.Data.Interfaces.Wrappers;
 
-namespace Poketranslator.Data.External.PokemonApi
+namespace Poketranslator.Data.Wrappers
 {
     public class PokeApiClientWrapper : IPokeApiClientWrapper
     {

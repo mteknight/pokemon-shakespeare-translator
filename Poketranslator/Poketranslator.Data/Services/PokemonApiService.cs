@@ -4,8 +4,8 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using PokeApiNet;
-using Poketranslator.Data.Interfaces.External.PokemonApi;
 using Poketranslator.Data.Interfaces.Services;
+using Poketranslator.Data.Interfaces.Wrappers;
 using Pokemon = PokeApiNet.Pokemon;
 
 namespace Poketranslator.Data.Services

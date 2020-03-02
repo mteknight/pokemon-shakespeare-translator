@@ -23,9 +23,8 @@ namespace Poketranslator.Data.Wrappers
         {
             using var client = _httpClientFactory.CreateClient();
             var response = await client.PostAsync(requestUri, content, cancellationToken).ConfigureAwait(false);
-            response.EnsureSuccessStatusCode();
 
-            return response;
+            return response.EnsureSuccessStatusCode();
         }
     }
 }
