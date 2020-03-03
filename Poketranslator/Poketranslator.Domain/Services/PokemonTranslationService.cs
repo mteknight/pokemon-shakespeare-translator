@@ -3,7 +3,9 @@ using System.Threading;
 using System.Threading.Tasks;
 using Poketranslator.Data.Interfaces.Services;
 using Poketranslator.Domain.Interfaces.Domain;
+using Poketranslator.Domain.Interfaces.Models;
 using Poketranslator.Domain.Interfaces.Services;
+using Poketranslator.Domain.Models;
 
 namespace Poketranslator.Domain.Services
 {
@@ -20,7 +22,7 @@ namespace Poketranslator.Domain.Services
             _shakespeareTranslationService = shakespeareTranslationService ?? throw new ArgumentNullException(nameof(shakespeareTranslationService));
         }
 
-        public async Task<IPokemon> Translate(
+        public async Task<IPokemonModel> Translate(
             string pokemonName,
             CancellationToken cancellationToken)
         {
@@ -32,12 +34,19 @@ namespace Poketranslator.Domain.Services
             IPokemon pokemon = await _pokemonApiService.GetByName(pokemonName, cancellationToken)
                 .ConfigureAwait(false);
 
+            if (pokemon is null)
+            {
+                return default;
+            }
+
             string translation = await _shakespeareTranslationService.GetTranslation(pokemon.OriginalDescription, cancellationToken)
                 .ConfigureAwait(false);
 
-            pokemon.Translation = translation;
-
-            return pokemon;
+            return new PokemonModel
+            {
+                Name = pokemon.Name,
+                Description = translation
+            };
         }
     }
 }

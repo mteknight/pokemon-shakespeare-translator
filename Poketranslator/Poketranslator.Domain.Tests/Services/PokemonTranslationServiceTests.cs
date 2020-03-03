@@ -5,6 +5,7 @@ using Moq;
 using Poketranslator.Data.Interfaces.Services;
 using Poketranslator.Domain.Interfaces.Domain;
 using Poketranslator.Domain.Interfaces.Services;
+using Poketranslator.Domain.Models;
 using Poketranslator.Domain.Services;
 using Poketranslator.Tests.Common.Helpers;
 using Xunit;
@@ -37,12 +38,17 @@ namespace Poketranslator.Domain.Tests.Services
             Mock<IPokemonApiService> pokemonApiServiceMock,
             Mock<IShakespeareTranslationService> shakespeareTranslationServiceMock,
             string pokemonName,
-            IPokemon expectedPokemon)
+            IPokemon pokemon)
         {
             // Arrange
-            SetupPokemonApiServiceMock(pokemonApiServiceMock, expectedPokemon);
+            var expectedPokemonModel = new PokemonModel
+            {
+                Name = pokemon.Name,
+                Description = pokemon.OriginalDescription
+            };
 
-            SetupShakespeareTranslationServiceMock(shakespeareTranslationServiceMock, expectedPokemon);
+            SetupPokemonApiServiceMock(pokemonApiServiceMock, pokemon);
+            SetupShakespeareTranslationServiceMock(shakespeareTranslationServiceMock, pokemon);
 
             var sutService = DIHelper.GetServices()
                 .RegisterMock(pokemonApiServiceMock)
@@ -54,7 +60,7 @@ namespace Poketranslator.Domain.Tests.Services
 
             // Assert
             Assert.NotNull(translatedPokemon);
-            Assert.Equal(expectedPokemon, translatedPokemon, new PokemonComparer());
+            Assert.Equal(expectedPokemonModel, translatedPokemon, new PokemonModelComparer());
         }
 
         private static void SetupPokemonApiServiceMock(
@@ -73,6 +79,26 @@ namespace Poketranslator.Domain.Tests.Services
             shakespeareTranslationServiceMock
                 .Setup(service => service.GetTranslation(It.IsAny<string>(), It.IsAny<CancellationToken>()))
                 .ReturnsAsync(() => expectedPokemon.Translation);
+        }
+
+        [Theory]
+        [AutoMoqData]
+        public async Task TestTranslate_WhenPokemonNotFound_ExpectNullReturn(
+            Mock<IPokemonApiService> pokemonApiServiceMock,
+            string pokemonName)
+        {
+            // Arrange
+            SetupPokemonApiServiceMock(pokemonApiServiceMock, default(IPokemon));
+            var sutService = DIHelper.GetServices()
+                .RegisterMock(pokemonApiServiceMock)
+                .GetConfiguredService<IPokemonTranslationService>();
+
+            // Act
+            var pokemon = await sutService.Translate(pokemonName, CancellationToken.None)
+                .ConfigureAwait(false);
+
+            // Assert
+            Assert.Null(pokemon);
         }
     }
 }
