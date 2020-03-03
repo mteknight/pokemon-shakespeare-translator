@@ -1,13 +1,17 @@
 using System;
+using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Web.Http;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Poketranslator.Domain.Interfaces.Models;
 using Poketranslator.Domain.Interfaces.Services;
-using Poketranslator.Domain.Models;
 
 namespace Poketranslator.API.Controllers
 {
-    public class PokemonController : ApiController
+    [ApiController]
+    [Route("api/[controller]")]
+    public class PokemonController : ControllerBase
     {
         private readonly IPokemonTranslationService _pokemonTranslationService;
 
@@ -17,8 +21,12 @@ namespace Poketranslator.API.Controllers
             _pokemonTranslationService = pokemonTranslationService ?? throw new ArgumentNullException(nameof(pokemonTranslationService));
         }
 
-        public async Task<IHttpActionResult> Get(
-            string pokemonName,
+        [HttpGet]
+        [Route("{pokemonName}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<IPokemonModel>> Get(
+            [FromRoute] string pokemonName,
             CancellationToken cancellationToken)
         {
             if (string.IsNullOrWhiteSpace(pokemonName))
@@ -30,7 +38,7 @@ namespace Poketranslator.API.Controllers
                 .ConfigureAwait(false);
 
             return model is null
-                ? (IHttpActionResult) NotFound()
+                ? (ActionResult) NotFound()
                 : Ok(model);
         }
     }

@@ -1,8 +1,7 @@
 using System.Net;
-using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Web.Http;
+using Microsoft.AspNetCore.Http;
 using Moq;
 using Poketranslator.API.Controllers;
 using Poketranslator.Domain.Interfaces.Models;
@@ -24,19 +23,16 @@ namespace Poketranslator.API.Tests.Controllers
             string pokemonName)
         {
             // Arrange
-            const HttpStatusCode expectedBadRequest = HttpStatusCode.BadRequest;
+            const int expectedBadRequest = StatusCodes.Status400BadRequest;
             var pokemonTranslationServiceMock = new Mock<IPokemonTranslationService>();
             var sutController = new PokemonController(pokemonTranslationServiceMock.Object);
-            sutController.Request = new HttpRequestMessage();
-            sutController.Configuration = new HttpConfiguration();
 
             // Act
-            var response = await sutController.Get(pokemonName, CancellationToken.None);
-            var responseMessage = await response.ExecuteAsync(CancellationToken.None);
+            var result = await sutController.Get(pokemonName, CancellationToken.None);
 
             // Assert
-            Assert.NotNull(responseMessage);
-            Assert.Equal(expectedBadRequest, responseMessage.StatusCode);
+            Assert.NotNull(result.Value);
+            Assert.Equal(expectedBadRequest, sutController.Response.StatusCode);
         }
 
         [Theory]
@@ -49,20 +45,14 @@ namespace Poketranslator.API.Tests.Controllers
             // Arrange
             SetupPokemonTranslationServiceMock(pokemonTranslationServiceMock, expectedPokemonModel);
             var sutController = new PokemonController(pokemonTranslationServiceMock.Object);
-            sutController.Request = new HttpRequestMessage();
-            sutController.Configuration = new HttpConfiguration();
 
             // Act
-            var response = await sutController.Get(pokemonName, CancellationToken.None);
-            var responseMessage = await response.ExecuteAsync(CancellationToken.None);
-            responseMessage.EnsureSuccessStatusCode();
-
-            var canGetContent = responseMessage.TryGetContentValue(out PokemonModel pokemonModel);
+            var result = await sutController.Get(pokemonName, CancellationToken.None);
 
             // Assert
-            Assert.True(canGetContent);
-            Assert.NotNull(pokemonModel);
-            Assert.Equal(expectedPokemonModel, pokemonModel, new PokemonModelComparer());
+            Assert.NotNull(result);
+            Assert.NotNull(result.Value);
+            Assert.Equal(expectedPokemonModel, result.Value, new PokemonModelComparer());
         }
 
         private static void SetupPokemonTranslationServiceMock(
@@ -81,19 +71,16 @@ namespace Poketranslator.API.Tests.Controllers
             string pokemonName)
         {
             // Arrange
-            const HttpStatusCode expectedNotFound = HttpStatusCode.NotFound;
+            const int expectedNotFound = StatusCodes.Status404NotFound;
             SetupPokemonTranslationServiceMock(pokemonTranslationServiceMock, default);
             var sutController = new PokemonController(pokemonTranslationServiceMock.Object);
-            sutController.Request = new HttpRequestMessage();
-            sutController.Configuration = new HttpConfiguration();
 
             // Act
-            var response = await sutController.Get(pokemonName, CancellationToken.None);
-            var responseMessage = await response.ExecuteAsync(CancellationToken.None);
+            var result = await sutController.Get(pokemonName, CancellationToken.None);
 
             // Assert
-            Assert.NotNull(responseMessage);
-            Assert.Equal(expectedNotFound, responseMessage.StatusCode);
+            Assert.NotNull(result);
+            Assert.Equal(expectedNotFound, sutController.Response.StatusCode);
         }
     }
 }

@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Poketranslator.API\Poketranslator.API.csproj" />
+    <ProjectReference Include="..\Poketranslator.Domain\Poketranslator.Domain.csproj" />
     <ProjectReference Include="..\Poketranslator.Tests.Common\Poketranslator.Tests.Common.csproj" />
   </ItemGroup>
 
