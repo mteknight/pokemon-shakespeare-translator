@@ -5,10 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\Poketranslator.Data.Interfaces\Poketranslator.Data.Interfaces.csproj" />
     <ProjectReference Include="..\Poketranslator.Domain.Interfaces\Poketranslator.Domain.Interfaces.csproj" />
   </ItemGroup>

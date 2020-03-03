@@ -1,19 +1,19 @@
 using System.Collections.Generic;
-using Poketranslator.Domain.Interfaces.Domain;
+using Poketranslator.Domain.Interfaces.Models;
+using Poketranslator.Domain.Models;
 
 namespace Poketranslator.Domain.Services
 {
-    public class PokemonComparer : IEqualityComparer<IPokemon>
+    public class PokemonModelComparer : IEqualityComparer<IPokemonModel>
     {
         public bool Equals(
-            IPokemon left,
-            IPokemon right)
+            IPokemonModel left,
+            IPokemonModel right)
         {
             return left != null &&
                    right != null &&
                    left.Name == right.Name &&
-                   left.OriginalDescription == right.OriginalDescription &&
-                   left.Translation == right.Translation;
+                   left.Description == right.Description;
         }
 
         /// <summary>
@@ -24,7 +24,7 @@ namespace Poketranslator.Domain.Services
         /// A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table.
         /// </returns>
         /// <remarks>https://stackoverflow.com/questions/263400/what-is-the-best-algorithm-for-overriding-gethashcode</remarks>
-        public int GetHashCode(IPokemon pokemon)
+        public int GetHashCode(IPokemonModel pokemon)
         {
             unchecked // Overflow is fine, just wrap
             {
@@ -32,8 +32,7 @@ namespace Poketranslator.Domain.Services
 
                 // Suitable nullity checks etc, of course :)
                 hash *= GetHashCode(pokemon.Name);
-                hash *= GetHashCode(pokemon.OriginalDescription);
-                hash *= GetHashCode(pokemon.Translation);
+                hash *= GetHashCode(pokemon.Description);
 
                 return hash;
             }

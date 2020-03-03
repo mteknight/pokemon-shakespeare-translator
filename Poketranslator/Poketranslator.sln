@@ -19,11 +19,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Poketranslator.Data.Tests",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PokeTranslator.Data.IntegrationTests", "PokeTranslator.Data.IntegrationTests\PokeTranslator.Data.IntegrationTests.csproj", "{C4AF9588-DD2D-47E1-BD27-BA4222AB95BC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Poketranslator.Domain.Tests", "Poketranslator.Domain.Tests\Poketranslator.Domain.Tests.csproj", "{2C695064-BF3B-495E-9A29-2A77E99EBFB9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Poketranslator.Domain.Tests", "Poketranslator.Domain.Tests\Poketranslator.Domain.Tests.csproj", "{2C695064-BF3B-495E-9A29-2A77E99EBFB9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Poketranslator.Tests.Common", "Poketranslator.Tests.Common\Poketranslator.Tests.Common.csproj", "{E0F58D9C-6123-47AC-B8EE-3D4843F80208}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Poketranslator.Tests.Common", "Poketranslator.Tests.Common\Poketranslator.Tests.Common.csproj", "{E0F58D9C-6123-47AC-B8EE-3D4843F80208}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Poketranslator.Domain.Interfaces", "Poketranslator.Domain.Interfaces\Poketranslator.Domain.Interfaces.csproj", "{DA707411-AC22-41FD-9C73-22DA364A5510}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Poketranslator.Domain.Interfaces", "Poketranslator.Domain.Interfaces\Poketranslator.Domain.Interfaces.csproj", "{DA707411-AC22-41FD-9C73-22DA364A5510}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Poketranslator.API.Tests", "Poketranslator.API.Tests\Poketranslator.API.Tests.csproj", "{BFE6AA21-DD68-486A-8570-581F72079EA1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -71,6 +73,10 @@ Global
 		{DA707411-AC22-41FD-9C73-22DA364A5510}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DA707411-AC22-41FD-9C73-22DA364A5510}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DA707411-AC22-41FD-9C73-22DA364A5510}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BFE6AA21-DD68-486A-8570-581F72079EA1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BFE6AA21-DD68-486A-8570-581F72079EA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BFE6AA21-DD68-486A-8570-581F72079EA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BFE6AA21-DD68-486A-8570-581F72079EA1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -80,6 +86,7 @@ Global
 		{C4AF9588-DD2D-47E1-BD27-BA4222AB95BC} = {DC6677AC-D240-40F7-8ED6-76AD75E8D4B9}
 		{2C695064-BF3B-495E-9A29-2A77E99EBFB9} = {DC6677AC-D240-40F7-8ED6-76AD75E8D4B9}
 		{E0F58D9C-6123-47AC-B8EE-3D4843F80208} = {DC6677AC-D240-40F7-8ED6-76AD75E8D4B9}
+		{BFE6AA21-DD68-486A-8570-581F72079EA1} = {DC6677AC-D240-40F7-8ED6-76AD75E8D4B9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4F8095FD-EAA2-4155-B451-8577895A0971}
