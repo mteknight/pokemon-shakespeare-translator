@@ -20,7 +20,7 @@
     "Poketranslator.API": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "weatherforecast",
+      "launchUrl": "api/pokemon/charizard",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
@@ -29,7 +29,7 @@
     "Docker": {
       "commandName": "Docker",
       "launchBrowser": true,
-      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}/api/pokemon/",
+      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}/api/pokemon/charizard",
       "publishAllPorts": true
     }
   }
