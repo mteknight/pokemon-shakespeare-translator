@@ -1,9 +1,8 @@
 using System.Collections.Generic;
-using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 using Poketranslator.API.Controllers;
-using Poketranslator.Data.Interfaces.Wrappers;
 using Poketranslator.Domain.Interfaces.Models;
 using Poketranslator.Domain.Interfaces.Services;
 using Poketranslator.Domain.Models;
@@ -27,12 +26,12 @@ namespace Poketranslator.API.AcceptanceTests.Controllers
             var sutController = new PokemonController(pokemonTranslationService);
 
             // Act
-            var response = await sutController.Get(expectedPokemonModel.Name, CancellationToken.None);
+            var actionResult = await sutController.Get(expectedPokemonModel.Name, CancellationToken.None);
 
             // Assert
-            Assert.NotNull(response);
-            Assert.NotNull(response.Value);
-            Assert.Equal(expectedPokemonModel, response.Value, new PokemonModelComparer());
+            var objectResult = Assert.IsType<OkObjectResult>(actionResult.Result);
+            var translatedPokemon = Assert.IsType<PokemonModel>(objectResult.Value);
+            Assert.Equal(expectedPokemonModel, translatedPokemon, new PokemonModelComparer());
         }
 
         public static IEnumerable<object[]> GetPokemonTranslationAcceptanceTestData()
