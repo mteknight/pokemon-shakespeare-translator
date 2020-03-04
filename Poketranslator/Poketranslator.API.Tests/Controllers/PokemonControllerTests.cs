@@ -2,6 +2,8 @@ using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Moq;
 using Poketranslator.API.Controllers;
 using Poketranslator.Domain.Interfaces.Models;
@@ -28,11 +30,12 @@ namespace Poketranslator.API.Tests.Controllers
             var sutController = new PokemonController(pokemonTranslationServiceMock.Object);
 
             // Act
-            var result = await sutController.Get(pokemonName, CancellationToken.None);
+            var actionResult = await sutController.Get(pokemonName, CancellationToken.None);
+            var statusCodeResult = actionResult.Result as IStatusCodeActionResult;
 
             // Assert
-            Assert.NotNull(result.Value);
-            Assert.Equal(expectedBadRequest, sutController.Response.StatusCode);
+            Assert.NotNull(statusCodeResult);
+            Assert.Equal(expectedBadRequest, statusCodeResult.StatusCode);
         }
 
         [Theory]
@@ -47,12 +50,12 @@ namespace Poketranslator.API.Tests.Controllers
             var sutController = new PokemonController(pokemonTranslationServiceMock.Object);
 
             // Act
-            var result = await sutController.Get(pokemonName, CancellationToken.None);
+            var actionResult = await sutController.Get(pokemonName, CancellationToken.None);
 
             // Assert
-            Assert.NotNull(result);
-            Assert.NotNull(result.Value);
-            Assert.Equal(expectedPokemonModel, result.Value, new PokemonModelComparer());
+            var objectResult = Assert.IsType<OkObjectResult>(actionResult.Result);
+            var translatedPokemon = Assert.IsType<PokemonModel>(objectResult.Value);
+            Assert.Equal(expectedPokemonModel, translatedPokemon, new PokemonModelComparer());
         }
 
         private static void SetupPokemonTranslationServiceMock(
@@ -76,11 +79,12 @@ namespace Poketranslator.API.Tests.Controllers
             var sutController = new PokemonController(pokemonTranslationServiceMock.Object);
 
             // Act
-            var result = await sutController.Get(pokemonName, CancellationToken.None);
+            var actionResult = await sutController.Get(pokemonName, CancellationToken.None);
+            var statusCodeResult = actionResult.Result as IStatusCodeActionResult;
 
             // Assert
-            Assert.NotNull(result);
-            Assert.Equal(expectedNotFound, sutController.Response.StatusCode);
+            Assert.NotNull(statusCodeResult);
+            Assert.Equal(expectedNotFound, statusCodeResult.StatusCode);
         }
     }
 }

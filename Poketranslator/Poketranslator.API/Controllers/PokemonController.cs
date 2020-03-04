@@ -38,7 +38,7 @@ namespace Poketranslator.API.Controllers
                 .ConfigureAwait(false);
 
             return model is null
-                ? (ActionResult) NotFound()
+                ? (ActionResult<IPokemonModel>) NotFound()
                 : Ok(model);
         }
     }
